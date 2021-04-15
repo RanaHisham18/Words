@@ -15,6 +15,8 @@
  */
 package com.example.wordsapp
 
+import DetailActivity
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -69,6 +71,12 @@ class LetterAdapter :
         holder.button.setOnClickListener {
             // Create an action from WordList to DetailList
             // using the required arguments
+            val context = holder.view.context
+            val intent = Intent(context, DetailActivity::class.java)
+            context.startActivity(intent)
+
+            intent.putExtra("letter", holder.button.text.toString())
+
             val action = LetterListFragmentDirections.actionLetterListFragmentToWordListFragment(letter = holder.button.text.toString())
             // Navigate using that action
             holder.view.findNavController().navigate(action)
